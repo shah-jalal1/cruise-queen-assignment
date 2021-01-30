@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="bookNowBtn" onclick="display()" class="btn-style">Book Now</button>
         </div>
     </main>
 
@@ -133,7 +133,7 @@
            }
            productInput.value = procuctNewCount;
            // const caseTotal = caseNewCount * 59;
-           let productTotal = 0;
+        //    let productTotal = 0;
         //    if(product == 'phone') {
         //       productTotal = procuctNewCount * 150;
         //    }
@@ -162,6 +162,8 @@
            
            const grantTotal= totalPrice + tax;
            document.getElementById('grand-total').innerText ='$' + grantTotal;
+           return [phoneCount, totalPrice, grantTotal];
+
         }
   
         function getInputValue(product){
@@ -170,7 +172,15 @@
            return productCount;
         }
 
-  
+        // function two(){
+        //     return t="data", t2="d";
+        // }
+        function display(){
+            var result = calculateTotal();
+            alert("First Class seat:" + result[0] +"\n" + "total Price is: " + result[1]);
+        }
+
+
      </script>
 
 
