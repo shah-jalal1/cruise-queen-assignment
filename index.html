@@ -65,8 +65,8 @@
                 </div>
                 <div class="plus-minus-btn">
                     <!-- <p>+ -</p> -->
-                    <button onclick="handleProductChange('phone', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
-                    <button onclick="handleProductChange('phone', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
+                    <button onclick="handleseatChange('phone', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
+                    <button onclick="handleseatChange('phone', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
                     
                 </div>
             </div>
@@ -77,8 +77,8 @@
                     <input id="case-count" class="inp-style inp-width"  type="number"  value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleProductChange('case', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
-                    <button onclick="handleProductChange('case', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
+                    <button onclick="handleseatChange('case', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
+                    <button onclick="handleseatChange('case', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
                 </div>
             </div>
             <div class="calculations">
@@ -121,33 +121,23 @@
 
     <script>
   
-        function handleProductChange(product, isIncrease) {
-           const productInput = document.getElementById(product + '-count');
-           const productCount = parseInt(productInput.value);
-           let procuctNewCount = productCount;
+        function handleseatChange(seat, isIncrease) {
+           const seatInput = document.getElementById(seat + '-count');
+           const seatCount = parseInt(seatInput.value);
+           let seatNewCount = seatCount;
            if (isIncrease == true) {
-              procuctNewCount = productCount + 1;
+              seatNewCount = seatCount + 1;
            }
-           if (isIncrease == false && productCount > 0) {
-              procuctNewCount = productCount - 1;
+           if (isIncrease == false && seatCount > 0) {
+              seatNewCount = seatCount - 1;
            }
-           productInput.value = procuctNewCount;
-           // const caseTotal = caseNewCount * 59;
-        //    let productTotal = 0;
-        //    if(product == 'phone') {
-        //       productTotal = procuctNewCount * 150;
-        //    }
-        //    if(product == 'case') {
-        //       productTotal = procuctNewCount * 100;
-        //    }
-           
-        //    document.getElementById(product + '-total').innerText = '$' + productTotal;
+           seatInput.value = seatNewCount;
+     
            calculateTotal();
         }
   
         function calculateTotal() {
-           // const phoneInput = document.getElementById('phone-count');
-           // const phoneCount = parseInt(phoneInput.value);
+         
   
            const phoneCount = getInputValue('phone');
   
@@ -166,15 +156,12 @@
 
         }
   
-        function getInputValue(product){
-           const productInput = document.getElementById(product + '-count');
-           const productCount = parseInt(productInput.value);
-           return productCount;
+        function getInputValue(seat){
+           const seatInput = document.getElementById(seat + '-count');
+           const seatCount = parseInt(seatInput.value);
+           return seatCount;
         }
 
-        // function two(){
-        //     return t="data", t2="d";
-        // }
         function display(){
             var result = calculateTotal();
             alert("First Class seat:" + result[0] +"\n" + "total Price is: " + result[1]);
