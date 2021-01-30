@@ -59,26 +59,32 @@
             </div>
             <div class="input-group f-class">
                 <div>
-                    <label id="phone-total" for="">First Class ($150)</label>
-                    <!-- <input id="phone-count" class="inp-style inp-width" type="number" value="1"> -->
-                    <input id="phone-count" class="inp-style inp-width"  type="number"  value="0">
+                    <label  for="">First Class ($150)</label>
+                    <p >Total First class Price: <span id="firstClass-total">$0</span></p>
+                    <!-- <input id="firstClass-count" class="inp-style inp-width" type="number" value="1"> -->
+                    <input id="firstClass-count" class="inp-style inp-width" type="number" value="0">
                 </div>
                 <div class="plus-minus-btn">
                     <!-- <p>+ -</p> -->
-                    <button onclick="handleseatChange('phone', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
-                    <button onclick="handleseatChange('phone', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
-                    
+                    <button onclick="handleseatChange('firstClass', true)"
+                        style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
+                    <button onclick="handleseatChange('firstClass', false)"
+                        style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
+
                 </div>
             </div>
 
             <div class="input-group f-class">
                 <div>
-                    <label id="case-total" for="">Economy ($100)</label>
-                    <input id="case-count" class="inp-style inp-width"  type="number"  value="0">
+                    <label  for="">Economy ($100)</label>
+                    <p>Total Economy price: <span id="economy-total">$0</span> </p>
+                    <input id="economy-count" class="inp-style inp-width" type="number" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleseatChange('case', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
-                    <button onclick="handleseatChange('case', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
+                    <button onclick="handleseatChange('economy', true)"
+                        style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
+                    <button onclick="handleseatChange('economy', false)"
+                        style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
                 </div>
             </div>
             <div class="calculations">
@@ -89,6 +95,7 @@
                     <div class="right">
                         <p id="total-price">$500</p>
                     </div>
+
                 </div>
 
                 <div class="amount">
@@ -115,64 +122,62 @@
 
     <!--Thank You-->
 
-
-
-
-
     <script>
-  
+
         function handleseatChange(seat, isIncrease) {
-           const seatInput = document.getElementById(seat + '-count');
-           const seatCount = parseInt(seatInput.value);
-           let seatNewCount = seatCount;
-           if (isIncrease == true) {
-              seatNewCount = seatCount + 1;
-           }
-           if (isIncrease == false && seatCount > 0) {
-              seatNewCount = seatCount - 1;
-           }
-           seatInput.value = seatNewCount;
-     
-           calculateTotal();
+            const seatInput = document.getElementById(seat + '-count');
+            const seatCount = parseInt(seatInput.value);
+            let seatNewCount = seatCount;
+            if (isIncrease == true) {
+                seatNewCount = seatCount + 1;
+            }
+            if (isIncrease == false && seatCount > 0) {
+                seatNewCount = seatCount - 1;
+            }
+            seatInput.value = seatNewCount;
+
+            let seatTotal = 0;
+            if (seat == 'firstClass') {
+                seatTotal = seatNewCount * 150;
+            }
+            if (seat == 'economy') {
+                seatTotal = seatNewCount * 100;
+            }
+
+            document.getElementById(seat + '-total').innerText = '$' + seatTotal;
+
+            calculateTotal();
         }
-  
+
         function calculateTotal() {
-         
-  
-           const phoneCount = getInputValue('phone');
-  
-           const caseCount = getInputValue('case');
-  
-           const totalPrice = phoneCount * 150 + caseCount * 100;
-           document.getElementById('total-price').innerText = '$' + totalPrice;
-  
-           // const tax = (totalPrice * 0.1);
-           const tax = Math.round(totalPrice * 0.1);
-           document.getElementById('tax-amount').innerText ='$' +tax;
-           
-           const grantTotal= totalPrice + tax;
-           document.getElementById('grand-total').innerText ='$' + grantTotal;
-           return [phoneCount, totalPrice, grantTotal];
+            const firstClassCount = getInputValue('firstClass');
+
+            const economyCount = getInputValue('economy');
+
+            const totalPrice = firstClassCount * 150 + economyCount * 100;
+            document.getElementById('total-price').innerText = '$' + totalPrice;
+
+            const tax = Math.round(totalPrice * 0.1);
+            document.getElementById('tax-amount').innerText = '$' + tax;
+
+            const grantTotal = totalPrice + tax;
+            document.getElementById('grand-total').innerText = '$' + grantTotal;
+            return [firstClassCount, economyCount, totalPrice, tax, grantTotal];
 
         }
-  
-        function getInputValue(seat){
-           const seatInput = document.getElementById(seat + '-count');
-           const seatCount = parseInt(seatInput.value);
-           return seatCount;
+
+        function getInputValue(seat) {
+            const seatInput = document.getElementById(seat + '-count');
+            const seatCount = parseInt(seatInput.value);
+            return seatCount;
         }
 
-        function display(){
+        function display() {
             var result = calculateTotal();
-            alert("First Class seat:" + result[0] +"\n" + "total Price is: " + result[1]);
+            alert("First Class seat:" + result[0] + "\n" + "Economy seat:" + result[1] + "\n" + "Subtotal: " + result[2] + "\n" +  "Tax: " + result[3] + "\n" +  "Total : " + result[4]);
         }
 
-
-     </script>
-
-
-
-
+    </script>
 
 </body>
 
