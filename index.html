@@ -65,8 +65,8 @@
                 </div>
                 <div class="plus-minus-btn">
                     <!-- <p>+ -</p> -->
-                    <button onclick="handleProductChange('phone', true)" style="font-size: 25px; color: blue; background-color:transparent;">+</button>
-                    <button onclick="handleProductChange('phone', false)" style="font-size: 25px; color: blue; background-color:transparent;">-</button>
+                    <button onclick="handleProductChange('phone', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
+                    <button onclick="handleProductChange('phone', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
                     
                 </div>
             </div>
@@ -77,8 +77,8 @@
                     <input id="case-count" class="inp-style inp-width"  type="number"  value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleProductChange('case', true)" style="font-size: 25px; color: blue; background-color:transparent;">+</button>
-                    <button onclick="handleProductChange('case', false)" style="font-size: 25px; color: blue; background-color:transparent;">-</button>
+                    <button onclick="handleProductChange('case', true)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 5px; padding-right: 5px;">+</button>
+                    <button onclick="handleProductChange('case', false)" style="font-size: 25px; color: blue; background-color:transparent; padding-left: 8px; padding-right: 8px;">-</button>
                 </div>
             </div>
             <div class="calculations">
@@ -134,12 +134,12 @@
            productInput.value = procuctNewCount;
            // const caseTotal = caseNewCount * 59;
            let productTotal = 0;
-           if(product == 'phone') {
-              productTotal = procuctNewCount * 1229;
-           }
-           if(product == 'case') {
-              productTotal = procuctNewCount * 59;
-           }
+        //    if(product == 'phone') {
+        //       productTotal = procuctNewCount * 150;
+        //    }
+        //    if(product == 'case') {
+        //       productTotal = procuctNewCount * 100;
+        //    }
            
         //    document.getElementById(product + '-total').innerText = '$' + productTotal;
            calculateTotal();
@@ -153,7 +153,7 @@
   
            const caseCount = getInputValue('case');
   
-           const totalPrice = phoneCount * 1219 + caseCount * 59;
+           const totalPrice = phoneCount * 150 + caseCount * 100;
            document.getElementById('total-price').innerText = '$' + totalPrice;
   
            // const tax = (totalPrice * 0.1);
